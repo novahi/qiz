@@ -1,8 +1,8 @@
-const homeRoute = require('./home')
+const siteRoute = require('./site')
 
 
 function route (app) {
-  app.use('/', homeRoute)
+  app.use('/', siteRoute)
 }
 
 module.exports = route

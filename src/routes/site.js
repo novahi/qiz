@@ -1,5 +1,5 @@
 const express = require('express')
-const route = express.Route()
-const homeControllers = require('../controllers/HomeControllers')
+const router = express.Router()
+const siteControllers = require('../app/controllers/SiteControllers')
 
-route.get('/', homeControllers.home)
+router.get('/', siteControllers.home)

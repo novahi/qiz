@@ -24,17 +24,7 @@ app.use(cookieParser())
 
 
 // Template engine
-app.engine(
-    'hbs',
-    handlebars({
-      // Edit the handlebars file handlebars to .hbs
-        extname: '.hbs',
-        helpers: {
-          // Processing functions 
-          sum: (a,b) => {return a+b} 
-     }
-    }),
-);
+app.engine('hbs', handlebars.engine({extname: '.hbs'}))
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resrc', 'views'));
 
