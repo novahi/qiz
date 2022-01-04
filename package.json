@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "login": "nodemon src/app.js"
   },
   "repository": "https://github.com/novahi/qiz.git",
   "author": "novahi",
