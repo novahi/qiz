@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Connect with MongoDB
 
-MongoDb.connect(process.env.ACCOUNT_URL_DB);
+MongoDb.multiConnect()
 
 
 // Working with Cookies

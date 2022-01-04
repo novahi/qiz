@@ -19,15 +19,15 @@ const Account = new Schema({
     type: String,
     unique: true,
     default: null
-  },
-  {
-    timestamps: {
-        currentTime: () => Date().toLocaleString("vi-VI", {
-          timeZone: "Asia/Ho_Chi_Minh"
-        })
-      },
-    versionKey: false
   }
-})
+},
+{
+   timestamps: {
+     currentTime: () => Date().toLocaleString("vi-VI", {
+       timeZone: "Asia/Ho_Chi_Minh"
+     })
+   },
+   versionKey: false
+ })
 
 module.exports = mongoose.Model('accounts', Account)

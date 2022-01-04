@@ -31,10 +31,10 @@ class LoginControllers {
           sameSite: "strict",
           secure: false
         })
-        res.status(200).redirect('/')
+        res.status(200).json({"token": accessToken)
       }
     } catch (e) {
-
+      res.status(404).json("Server Error !")
     }
   }
 }
