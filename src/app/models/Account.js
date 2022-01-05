@@ -29,4 +29,4 @@ const Account = new Schema({
    versionKey: false
  })
 
-module.exports = conn.Model('accounts', Account)
+module.exports = conn.model('accounts', Account)

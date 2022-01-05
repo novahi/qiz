@@ -14,10 +14,10 @@ class LoginControllers {
         username
       })
       if (!userData) {
-        return res.status().json("Incorrect account information !")
+        return res.status(403).json("Incorrect username information !")
       }
       if (userData.password !== password) {
-        return res.status().json("Incorrect password information!")
+        return res.status(403).json("Incorrect password information!")
       }
       if (userData && userData.password == password) {
         const accessToken = jwt.sign({
@@ -26,9 +26,9 @@ class LoginControllers {
           expiresIn: "30m"
         })
         res.cookie("accessToken", accessToken, {
-          httpOnly: true,
+          //httpOnly: true,
           path: "/",
-          sameSite: "strict",
+          //sameSite: "strict",
           secure: false
         })
         res.status(200).json({"token": accessToken})

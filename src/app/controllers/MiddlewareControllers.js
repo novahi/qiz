@@ -25,8 +25,8 @@ class Middleware {
   }
   validate(req, res, next) {
     const formData = req.body
-    const {password} = formData
-    const username = formData.username.toLowerCase()
+    let {password} = formData
+    let username = formData.username.toLowerCase()
     req.username = username
     req.password = password
     next()
