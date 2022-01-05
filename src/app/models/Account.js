@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const slug = require('mongoose-slug-generator')
 const Schema = mongoose.Schema;
 mongoose.plugin(slug);
+console.log(__dirname)
 
 const Account = new Schema({
   username: {

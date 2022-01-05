@@ -20,8 +20,7 @@ class Middleware {
         next()
       }
     } catch (e) {
-      res.status(403).json("message": "You are not authorized to perform this action. Please try again later !"
-      )
+      res.status(403).json({"message": "You are not authorized to perform this action. Please try again later !"})
     }
   }
   validate(req, res, next) {
