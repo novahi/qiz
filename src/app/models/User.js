@@ -40,11 +40,7 @@ const User = new Schema({
   }
 },
 {
-   timestamps: {
-     currentTime: () => Date().toLocaleString("vi-VI", {
-       timeZone: "Asia/Ho_Chi_Minh"
-     })
-   },
+   timestamps: true,
    versionKey: false
  })
 

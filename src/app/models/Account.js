@@ -2,8 +2,10 @@ const mongoose = require('mongoose')
 const slug = require('mongoose-slug-generator')
 const Schema = mongoose.Schema;
 mongoose.plugin(slug);
-console.log(__dirname)
-
+const conn = mongoose.createConnection(process.env.ACCOUNT_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 const Account = new Schema({
   username: {
     type: String,
@@ -23,12 +25,8 @@ const Account = new Schema({
   }
 },
 {
-   timestamps: {
-     currentTime: () => Date().toLocaleString("vi-VI", {
-       timeZone: "Asia/Ho_Chi_Minh"
-     })
-   },
+   timestamps: true,
    versionKey: false
  })
 
-module.exports = mongoose.Model('accounts', Account)
+module.exports = conn.Model('accounts', Account)

@@ -4,6 +4,6 @@ const signUpControllers = require('../app/controllers/SignUpControllers')
 const middleware = require('../app/controllers/MiddlewareControllers')
 
 router.get('/', signUpControllers.get)
-router.post('/',middleware.check, signUpControllers.post)
+router.post('/', signUpControllers.post)
 
 module.exports = router

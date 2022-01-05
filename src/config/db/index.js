@@ -1,15 +1,26 @@
 const mongoose = require('mongoose')
 let options = {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 }
-console.log(__dirname)
-mongose.connect(USER_URI, options)
-.then(() => console.log("Connection Successfully! (User)"))
-.catch(e => console.log("Connection Fail (User)!"))
+class MongoDb {
+  async connect() {
+    try {
+      await mongoose.connect(process.env.USER_URI, options)
+      console.log(`Connection Successfully! (User)`)
+    } catch (error) {
+      console.log(`Error: ${error}`)
+    }
+  }
+  // async multiConnect() {
+  //   try {
+  //     const connect = await mongoose.connect(process.env.ACCOUNT_URI, options)
+  //     console.log(`Connection Successfully! (Account)`)
+  //     return connect
+  //   } catch (error) {
+  //     console.log(`Error: ${error}`)
+  //   }
+  // }
+}
 
-mongoose.account = mongose.createConnection(ACCOUNT_URI, options)
-  .then(() => console.log("Connection Successfully! (Account)"))
-  .catch(e => console.log("Connection Fail (Account)!"))
-
-module.exports = mongoose
+module.exports = new MongoDb()
