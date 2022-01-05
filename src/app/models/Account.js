@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-mongoose.plugin(slug);
-
+require('dotenv').config()
 //Connect to User Accounts Database
 const connect = mongoose.createConnection(process.env.ACCOUNT_URI, {
   useNewUrlParser: true,
