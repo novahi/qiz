@@ -21,7 +21,8 @@ class LoginControllers {
       }
       if (userData && userData.password == password) {
         const accessToken = jwt.sign({
-          id: userData.id
+          id: userData.id,
+          role: userData.role
         }, process.env.JWT_SECRET, {
           expiresIn: "30m"
         })

@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
-const slug = require('mongoose-slug-generator')
 const Schema = mongoose.Schema;
 mongoose.plugin(slug);
-const conn = mongoose.createConnection(process.env.ACCOUNT_URI, {
+
+//Connect to User Accounts Database
+const connect = mongoose.createConnection(process.env.ACCOUNT_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -22,6 +23,10 @@ const Account = new Schema({
     type: String,
     unique: true,
     default: null
+  }, 
+  role: {
+    type: Boolean,
+    default: false
   }
 },
 {
@@ -29,4 +34,4 @@ const Account = new Schema({
    versionKey: false
  })
 
-module.exports = conn.model('accounts', Account)
+module.exports = connect.model('accounts', Account)
