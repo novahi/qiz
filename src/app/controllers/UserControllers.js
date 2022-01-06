@@ -5,15 +5,28 @@ const jwt = require('jsonwebtoken')
 class UserControllers {
   async view (req, res) {
     try {
-      const user = await User.find({}).lean()
+      const id = req.userId
+      const [user, data] = Promise.all([User.find({}).lean(),User.findById(id).lean()])
       return res.status(200).render('user/views', {
-        user
+        user,data
       })
-    } catch (e) {
+    } 
+    catch (e) {
       return res.status(403).json("Sorry the server can't find any users at the moment ! Please try again later x.x")
     }
   }
-  
+  async detail (req, res) {
+    try {
+      const slug = req.parasm.slug
+      const [user, data] = Promise.all([User.findOne({slug}).lean(),User.findById(id).lean()])
+      res.status(200).render("user/detail", {
+        user,data
+      })
+    } 
+    catch (e) {
+      res.status(403).json("Không tìm thấy người dùng !")
+    }
+  }
 }
 
 module.exports = new UserControllers()

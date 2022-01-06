@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 class SiteControllers {
   async home(req, res) {
-    return await res.status(200).render('home')
+    return res.status(200).render('home')
   }
   
 }
