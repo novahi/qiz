@@ -27,7 +27,7 @@ class LoginControllers {
           expiresIn: "30m"
         })
         res.cookie("accessToken", accessToken, {
-          /httpOnly: true,
+          httpOnly: true,
           path: "/",
           //sameSite: "strict",
           secure: false
