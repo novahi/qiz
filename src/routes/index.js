@@ -2,7 +2,7 @@ const siteRoute = require('./site')
 const loginRoute = require('./login')
 const signUpRoute = require('./signUp')
 const userRoute = require('./user')
-const logoutRoute = require('./user')
+const logoutRoute = require('./logout')
 
 function route (app) {
   app.use('logout', logoutRoute)
