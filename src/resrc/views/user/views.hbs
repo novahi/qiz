@@ -11,9 +11,9 @@
     </tr>
   </thead>
   <tbody>
-    {{#each data}}
+    {{#each user}}
     <tr>
-      <th scope="row">{{sum @index 1}}</th>
+      <th scope="row">$</th>
       <td><a class="btn link-primary" href="/users/{{user.slug}}">{{user.name}}</a></td>
       <td>{{user.address}}</td>
       <td>{{user.createdAt}}</td>

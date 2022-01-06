@@ -4,7 +4,14 @@ const jwt = require('jsonwebtoken')
 
 class UserControllers {
   async view (req, res) {
-    res.status(200).render("user/views")
+    try {
+      const user = await User.find({}).lean()
+      return res.status(200).render('user/views', {
+        user
+      })
+    } catch (e) {
+      return res.status(403).json("Sorry the server can't find any users at the moment ! Please try again later x.x")
+    }
   }
   
 }
