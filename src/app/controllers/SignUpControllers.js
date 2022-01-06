@@ -17,7 +17,7 @@ class SignUpControllers {
     const newAccount = await new Account({
       password,username: validateUsername,id
     }).save()
-    res.status(200).json(newAccount)
+    res.status(200).redirect('/login')
     } 
     catch (e) {
       if(id) {

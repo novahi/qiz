@@ -27,12 +27,12 @@ class LoginControllers {
           expiresIn: "30m"
         })
         res.cookie("accessToken", accessToken, {
-          httpOnly: true,
+          /httpOnly: true,
           path: "/",
           //sameSite: "strict",
           secure: false
         })
-        res.status(200).json({"token": accessToken})
+        res.status(200).redirect('/users')
       }
     } catch (e) {
       res.status(404).json("Server Error !")
