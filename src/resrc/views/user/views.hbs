@@ -14,12 +14,12 @@
     {{#each user}}
     <tr>
       <th scope="row">$</th>
-      <td><a class="btn link-primary" href="/users/{{user.slug}}">{{user.name}}</a></td>
-      <td>{{user.address}}</td>
-      <td>{{user.createdAt}}</td>
+      <td><a class="btn link-primary" href="/users/{{this.slug}}">{{this.name}}</a></td>
+      <td>{{this.address}}</td>
+      <td>{{this.createdAt}}</td>
       <td>
-         <a href="/users/{{user._id}}/edit" class="btn link-primary">Sửa</a>
-         <a href=""  class="btn link-primary"data-id="{{user._id}}"  data-bs-toggle="modal" data-bs-target="#delete-user" id="btn-delete" >Xóa</a>
+         <a href="/users/{{this._id}}/edit" class="btn link-primary">Sửa</a>
+         <a href=""  class="btn link-primary"data-id="{{this._id}}"  data-bs-toggle="modal" data-bs-target="#delete-user" id="btn-delete" >Xóa</a>
       </td>
     </tr>
     {{/each}}
