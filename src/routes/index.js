@@ -5,7 +5,7 @@ const userRoute = require('./user')
 const logoutRoute = require('./logout')
 
 function route (app) {
-  app.use('logout', logoutRoute)
+  app.use('/logout', logoutRoute)
   app.use('/users', userRoute)
   app.use('/login', loginRoute)
   app.use('/signup', signUpRoute)

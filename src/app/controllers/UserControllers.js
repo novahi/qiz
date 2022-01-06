@@ -6,7 +6,7 @@ class UserControllers {
   async view (req, res) {
     try {
       const id = req.userId
-      const [user, data] = Promise.all([User.find({}).lean(),User.findById(id).lean()])
+      const [user, data] = await Promise.all([User.find({}).lean(), User.findById(id).lean()])
       return res.status(200).render('user/views', {
         user,data
       })
@@ -17,8 +17,9 @@ class UserControllers {
   }
   async detail (req, res) {
     try {
+      const id = req.userId
       const slug = req.parasm.slug
-      const [user, data] = Promise.all([User.findOne({slug}).lean(),User.findById(id).lean()])
+      const [user, data] = await Promise.all([User.findOne({slug}).lean(),User.findById(id).lean()])
       res.status(200).render("user/detail", {
         user,data
       })
