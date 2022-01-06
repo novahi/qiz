@@ -18,7 +18,7 @@ class UserControllers {
   async detail (req, res) {
     try {
       const id = req.userId
-      const slug = req.parasm.slug
+      const slug = req.params.slug
       const [user, data] = await Promise.all([User.findOne({slug}).lean(),User.findById(id).lean()])
       res.status(200).render("user/detail", {
         user,data
