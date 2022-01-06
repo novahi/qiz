@@ -4,11 +4,11 @@ const jwt = require('jsonwebtoken')
 
 class SignUpControllers {
   async get (req, res) {
-    return res.status(200).json("Controllers Sign Up ! Post Data on this uri and method Post")
+    return res.status(200).render("authentication/signup")
   }
   async post (req, res) {
-    try {
     let id
+    try {
     const formData = req.body
     const { password,username, ...other} = formData
     const validateUsername = username.toLowerCase().trim()
@@ -22,7 +22,7 @@ class SignUpControllers {
     catch (e) {
       if(id) {
         await User.deleteOne({_id: id})
-        return res.status(404).json("Sign Up Error !")
+        return res.status(404).json("Registration failed because the account already exists in the system!")
       } else {
         return res.status(500).json("Server Error !")
       }

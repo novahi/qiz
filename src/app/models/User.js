@@ -16,7 +16,6 @@ const User = new Schema({
   address: {
     type: String,
     required: true,
-    default: null,
   },
   facebook: {
     type: Number,
@@ -25,10 +24,12 @@ const User = new Schema({
   mail: {
     type: String,
     default: null,
+    
   },
   slug: {
     type: String,
-    slug: 'name'
+    slug: 'name',
+    unique: true,
   },
   image: {
     type: String,

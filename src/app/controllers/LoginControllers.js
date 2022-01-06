@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 class LoginControllers {
   async get(req, res) {
-    return res.status(200).render('home')
+    return res.status(200).render('authentication/login')
   }
   async post(req, res) {
     try {
