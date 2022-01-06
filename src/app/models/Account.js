@@ -22,15 +22,18 @@ const Account = new Schema({
     type: String,
     unique: true,
     default: null
-  }, 
+  },
   role: {
     type: Boolean,
     default: false
   }
-},
-{
-   timestamps: true,
-   versionKey: false
- })
+}, {
+  timestamps: {
+    currentTime: () => Date().toLocaleString("vi-VI", {
+      timeZone: "Asia/Ho_Chi_Minh"
+    })
+  },
+  versionKey: false
+})
 
 module.exports = connect.model('accounts', Account)

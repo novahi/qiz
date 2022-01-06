@@ -38,10 +38,13 @@ const User = new Schema({
     type: String,
     default: "https://picsum.photos/1000/1000"
   }
-},
-{
-   timestamps: true,
-   versionKey: false
- })
+}, {
+  timestamps: {
+    currentTime: () => Date().toLocaleString("vi-VI", {
+      timeZone: "Asia/Ho_Chi_Minh"
+    })
+  },
+  versionKey: false
+})
 
 module.exports = mongoose.model('users', User)
