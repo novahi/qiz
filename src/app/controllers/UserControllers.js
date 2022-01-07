@@ -12,7 +12,7 @@ class UserControllers {
       })
     } 
     catch (e) {
-      return res.status(403).json("Sorry the server can't find any users at the moment ! Please try again later x.x")
+      return res.status(403).json(e)
     }
   }
   async detail (req, res) {
@@ -25,7 +25,18 @@ class UserControllers {
       })
     } 
     catch (e) {
-      res.status(403).json("Không tìm thấy người dùng !")
+      res.status(403).json(e)
+    }
+  }
+  async edit (req, res) {
+    try {
+      const id = req.userId
+      const _id = req.params.id
+      const [user, data] = await Promise.all([User.findOne({_id}), User.findById(id)])
+      res.status(200).render('user/edit')
+    } 
+    catch (e) {
+      res.json(e)
     }
   }
 }
