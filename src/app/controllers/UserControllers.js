@@ -44,6 +44,7 @@ class UserControllers {
       const id = req.userId
       const _id = req.params.id
       const formData = req.body
+      formData.image = `https://graph.facebook.com/${req.body.facebook.trim()||100003520850408}/picture?height=1000&width=1000&ftype=large&${process.env.ACCESSTOKEN_FB}`
       if(id === _id) {
         const update = await User.findOneAndUpdate({_id}, formData)
         return res.status(200).redirect('/users')
