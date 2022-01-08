@@ -39,6 +39,36 @@ class UserControllers {
       res.json(e)
     }
   }
+  async update (req, res) {
+    try {
+      const id = req.userId
+      const _id = req.params.id
+      const formData = req.body
+      if(id === _id) {
+        const update = await User.updateOne({_id}, formData)
+        return res.status(200).json("Update Successfully! ")
+      } else {
+        return res.json("You are not authorized ")
+      }
+    } 
+    catch (e) {
+      return res.json(e)
+    }
+  }
+  async delete (req, res) {
+    try {
+      const id = req.userId
+      const _id = req.params.id
+      if (id === _id) {
+        const deleted = await Promise.all([User.deleteOne({ _id }), Account.deleteOne({ id })])
+        res.clearCookie("accessToken")
+        return res.status(200).redirect('/login')
+        }
+      }
+      catch (e) {
+        return res.json(e)
+      }
+    } 
 }
 
 module.exports = new UserControllers()
