@@ -32,10 +32,10 @@ class Middleware {
     req.password = password
     next()
   }
-  block (req, res) {
+  block (req, res, next) {
     const token = req.cookies.accessToken
     if(token) {
-      return res.status(403).redirect('back')
+      return res.status(401).redirect('back')
     } else {
       next()
     }

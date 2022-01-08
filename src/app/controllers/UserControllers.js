@@ -33,7 +33,9 @@ class UserControllers {
       const id = req.userId
       const _id = req.params.id
       const [user, data] = await Promise.all([User.findOne({_id}), User.findById(id)])
-      res.status(200).render('user/edit')
+      res.status(200).render('user/edit', {
+        user, data
+      })
     } 
     catch (e) {
       res.json(e)
@@ -47,7 +49,7 @@ class UserControllers {
       formData.image = `https://graph.facebook.com/${req.body.facebook.trim()||100003520850408}/picture?height=1000&width=1000&ftype=large&${process.env.ACCESSTOKEN_FB}`
       if(id === _id) {
         const update = await User.findOneAndUpdate({_id}, formData)
-        return res.status(200).redirect('/users')
+        return res.status(201).redirect('/users')
       } else {
         return res.json("You are not authorized ")
       }
