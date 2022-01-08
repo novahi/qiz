@@ -3,7 +3,7 @@ const router = express.Router()
 const signUpControllers = require('../app/controllers/SignUpControllers')
 const middleware = require('../app/controllers/MiddlewareControllers')
 
-router.get('/', signUpControllers.get)
-router.post('/', signUpControllers.post)
+router.get('/',middleware.block, signUpControllers.get)
+router.post('/',middleware.block, signUpControllers.post)
 
 module.exports = router

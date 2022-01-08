@@ -45,8 +45,8 @@ class UserControllers {
       const _id = req.params.id
       const formData = req.body
       if(id === _id) {
-        const update = await User.updateOne({_id}, formData)
-        return res.status(200).json("Update Successfully! ")
+        const update = await User.findOneAndUpdate({_id}, formData)
+        return res.status(200).redirect('/users')
       } else {
         return res.json("You are not authorized ")
       }

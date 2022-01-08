@@ -32,6 +32,14 @@ class Middleware {
     req.password = password
     next()
   }
+  block (req, res) {
+    const token = req.cookies.accessToken
+    if(token) {
+      return res.status(403).redirect('back')
+    } else {
+      next()
+    }
+  }
 }
 
 module.exports = new Middleware()
