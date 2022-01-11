@@ -15,21 +15,20 @@ const User = new Schema({
   },
   address: {
     type: String,
-    required: true,
+    required: true
   },
   facebook: {
     type: Number,
-    required: true,
+    required: true
   },
   mail: {
     type: String,
-    default: null,
-    
+    default: null
   },
   slug: {
     type: String,
     slug: 'name',
-    unique: true,
+    unique: true
   },
   image: {
     type: String,
