@@ -68,11 +68,14 @@
         age: $('#age').value.trim(),
         address: $('#address').value.trim(),
         password: $('#password').value.trim(),
-        mail: $('#mail').value.trim(),
+        mail: $('#email').value.trim(),
         facebook: $('#fb').value.trim()
       })
     }).then(res => res.json())
     console.log(data)
-    $('#message').textContent = data.message ? data.message : "Có lỗi xảy ra !"
+    if(data) {
+      $('#message').textContent = data.message ? data.message : "Có lỗi xảy ra !"
+    }
+    
   })
 </script>

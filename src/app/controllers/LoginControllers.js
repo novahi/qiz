@@ -38,7 +38,7 @@ class LoginControllers {
           //sameSite: "strict",
           secure: false
         })
-        return res.status(200).redirect('/')
+        res.status(200).redirect('/')
       }
     }
     catch (e) {

@@ -38,7 +38,8 @@ $('#form').addEventListener('submit', async (e) => {
         password: $('#password').value.trim()
       })
     }).then(res => res.json())
-    console.log(data)
-    message.textContent = data.message ? data.message : "Có lỗi xảy ra !"
+    if(data) {
+      $('#message').textContent = data.message ? data.message : "Có lỗi xảy ra !"
+    }
   }) 
 </script>
