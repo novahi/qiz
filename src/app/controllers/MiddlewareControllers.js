@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const Account = require('../models/Account')
 const jwt = require('jsonwebtoken')
-
+const { feedback } = require('../util/feedback')
 class Middleware {
   //Check if the user is logged in or not, if not, it must be logged in
   
@@ -21,7 +21,11 @@ class Middleware {
       }
     }
     catch (e) {
-      res.status(403).json({"message": "You are not authorized to perform this action. Please try again later !"})
+      console.log(e)
+      res.status(403).json({
+        "message": "You are not authorized to perform this action. Please try again later !",
+        "status": "error"
+      })
     }
   }
   validate(req, res, next) {

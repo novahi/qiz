@@ -15,9 +15,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Connect with MongoDB
-
-MongoDb.connect()
 
 // Working with Cookies
 app.use(cookieParser())
@@ -39,7 +36,5 @@ app.use(methodOverride('_method'))
 // Routes init
 route(app)
 
-// Start the Server
-app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}`),
-)
+// Start the Server and Connect with MongoDb
+app.listen(port, MongoDb.connect(port))

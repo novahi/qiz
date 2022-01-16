@@ -12,7 +12,11 @@ class UserControllers {
       })
     } 
     catch (e) {
-      return res.status(403).json(e)
+      console.log("(views) "+e)
+      return res.status(403).json({
+        "message": "The server has a problem and can't find the user",
+        "status": "error"
+      })
     }
   }
   async detail (req, res) {
@@ -25,7 +29,11 @@ class UserControllers {
       })
     } 
     catch (e) {
-      res.status(403).json(e)
+      console.log("(detail) "+e)
+      return res.status(403).json({
+        "message": "The server has a problem and can't find the user",
+        "status": "error"
+      })
     }
   }
   async edit (req, res) {
@@ -38,7 +46,11 @@ class UserControllers {
       })
     } 
     catch (e) {
-      res.json(e)
+      console.log("(edit) "+e)
+      return res.status(403).json({
+        "message": "The server has a problem and can't find the user",
+        "status": "error"
+      })
     }
   }
   async update (req, res) {
@@ -46,16 +58,23 @@ class UserControllers {
       const id = req.userId
       const _id = req.params.id
       const formData = req.body
-      formData.image = `https://graph.facebook.com/${req.body.facebook.trim()||100003520850408}/picture?height=1000&width=1000&ftype=large&${process.env.ACCESSTOKEN_FB}`
+      formData.image = `https://graph.facebook.com/${formData.facebook.trim()}/picture?height=1000&width=1000&ftype=large&${process.env.ACCESSTOKEN_FB}`
       if(id === _id) {
         const update = await User.findOneAndUpdate({_id}, formData)
         return res.status(201).redirect('/users')
       } else {
-        return res.json("You are not authorized ")
+        return res.status(403).json({
+          "message": "You do not have permission to perform this action !",
+          "status": "error"
+        })
       }
     } 
     catch (e) {
-      return res.json(e)
+      console.log("(update) "+e)
+      return res.status(403).json({
+        "message": "Unable to change the data there was some problem !",
+        "status": "error"
+      })
     }
   }
   async delete (req, res) {
@@ -67,9 +86,19 @@ class UserControllers {
         res.clearCookie("accessToken")
         return res.status(200).redirect('/login')
         }
+        else {
+          return res.status(403).json({
+            "message": "You do not have permission to perform this action !",
+            "status": "error"
+          })
+        }
       }
       catch (e) {
-        return res.json(e)
+        console.log("(delete) " +e)
+        return res.status(403).json({
+          "message": "Can't delete data there was some problem !",
+          "status": "error"
+        })
       }
     } 
 }

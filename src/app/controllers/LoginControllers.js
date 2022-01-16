@@ -14,10 +14,16 @@ class LoginControllers {
         username
       })
       if (!userData) {
-        return res.status(403).json("Incorrect username information !")
+        return res.status(403).json({
+          "message": "Invaild Username !",
+          "status": "error"
+        })
       }
       if (userData.password !== password) {
-        return res.status(403).json("Incorrect password information!")
+        return res.status(403).json({
+          "message": "Invaild Password !",
+          "status": "error"
+        })
       }
       if (userData && userData.password == password) {
         const accessToken = jwt.sign({
@@ -36,7 +42,11 @@ class LoginControllers {
       }
     }
     catch (e) {
-      res.status(404).json("Server Error !")
+      console.log(e)
+      res.status(404).json({
+        "message": "Server Error !",
+        "status": "error"
+      })
     }
   }
 }

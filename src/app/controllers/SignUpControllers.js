@@ -22,14 +22,23 @@ class SignUpControllers {
     res.status(201).redirect('/login')
     } 
     catch (e) {
+      console.log("SignUp "+ e)
       if(id) {
         await User.deleteOne({_id: id})
-        return res.status(406).json("Registration failed because the account already exists in the system!")
+        return res.status(406).json({
+          "message": "Registration failed because this account already exists in the system !",
+          "status": "error"
+        })
       } else {
-        return res.status(500).json("Server Error !")
+        return res.status(503).json({
+          "message": "Server Error . Please try again later !",
+          "status": "error"
+        })
       }
     }
   }
 }
 
 module.exports = new SignUpControllers()
+
+
