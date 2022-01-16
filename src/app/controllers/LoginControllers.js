@@ -48,7 +48,7 @@ class LoginControllers {
     catch (e) {
       console.log(e)
       res.status(404).json({
-        "message": "Server Error !",
+        "message": "Invalid Account or Password !",
         "status": "error"
       })
     }

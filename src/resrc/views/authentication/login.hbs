@@ -28,7 +28,7 @@
 const $ = document.querySelector.bind(document)
 $('#form').addEventListener('submit', async (e) => {
     e.preventDefault()
-    const data = await fetch('/signup', {
+    const data = await fetch('/login', {
       method: "Post",
       headers: {
         "Content-Type": "application/json"
