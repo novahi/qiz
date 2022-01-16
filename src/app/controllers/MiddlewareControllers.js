@@ -1,7 +1,6 @@
 const User = require('../models/User')
 const Account = require('../models/Account')
 const jwt = require('jsonwebtoken')
-const { feedback } = require('../util/feedback')
 class Middleware {
   //Check if the user is logged in or not, if not, it must be logged in
   
