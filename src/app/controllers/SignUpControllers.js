@@ -29,14 +29,12 @@ class SignUpControllers {
       console.log("SignUp "+ e)
       if(id) {
         await User.deleteOne({_id: id})
-        return res.status(403).json({
-          "message": "Registration failed because this account already exists in the system !",
-          "status": false
+        return res.status(403).render('authentication/signup', {
+          message: "Username already exists in the system, please use another name"
         })
       } else {
-        return res.status(500).json({
-          "message": "Server Error . Please try again later !",
-          "status": false
+        return res.status(500).render('authentication/signup', {
+          message: "Server error, please register later! "
         })
       }
     }

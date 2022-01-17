@@ -1,8 +1,8 @@
   <div class="main">
     
-  <form method="POST" class="form" id="form">
+  <form action="/signup" method="POST" class="form" id="form">
     <h3 class="heading">Đăng ký tài khoản</h3>
-    <p class="desc" id="message"></p>
+    <p class="desc" id="message">{{message}}</p>
 
     <div class="form-group">
       <label for="username" class="form-label">Tài khoản</label>
@@ -53,31 +53,3 @@
   </form>
 </div>
 
-<script>
-  const $ = document.querySelector.bind(document)
-  $("#form").addEventListener('submit', async (e) => {
-    e.preventDefault()
-    const data = await fetch('/signup', {
-      method: "Post",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username: $('#username').value.trim(),
-        name: $('#name').value.trim(),
-        age: $('#age').value.trim(),
-        address: $('#address').value.trim(),
-        password: $('#password').value.trim(),
-        mail: $('#email').value.trim(),
-        facebook: $('#fb').value.trim()
-      })
-    }).then(res => res.json())
-    console.log(data)
-    if(data) {
-      $('#message').textContent = data.message ? data.message : "Có lỗi xảy ra !"
-    }
-    if (data.status !== true) {
-      return false
-    }
-  })
-</script>
