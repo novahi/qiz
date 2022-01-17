@@ -19,7 +19,11 @@ class SignUpControllers {
     const newAccount = await new Account({
       password,username: validateUsername,id
     }).save()
-    res.status(201).redirect('/login')
+    res.status(201).json({
+      "message": "Sign up successfully!",
+      "status": true
+    })
+    return res.status(200).redirect('/login')
     } 
     catch (e) {
       console.log("SignUp "+ e)
@@ -27,12 +31,12 @@ class SignUpControllers {
         await User.deleteOne({_id: id})
         return res.status(403).json({
           "message": "Registration failed because this account already exists in the system !",
-          "status": "error"
+          "status": false
         })
       } else {
         return res.status(500).json({
           "message": "Server Error . Please try again later !",
-          "status": "error"
+          "status": false
         })
       }
     }

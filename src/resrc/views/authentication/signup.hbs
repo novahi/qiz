@@ -76,6 +76,8 @@
     if(data) {
       $('#message').textContent = data.message ? data.message : "Có lỗi xảy ra !"
     }
-    
+    if (data.status !== true) {
+      return false
+    }
   })
 </script>
