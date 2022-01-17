@@ -45,9 +45,8 @@ class LoginControllers {
     }
     catch (e) {
       console.log(e)
-      res.status(404).json({
-        "message": "Bad Request !",
-        "status": "failure"
+      res.status(404).render('authentication/signup', {
+        message: "Bad Request !"
       })
     }
   }
