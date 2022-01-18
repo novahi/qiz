@@ -16,7 +16,7 @@ class UserControllers {
 			console.log("(views) " + e)
 			return res.status(403).json({
 				message: "The server has a problem and can't find the user",
-				status: "error"
+				status: false
 			})
 		}
 	}
@@ -36,7 +36,7 @@ class UserControllers {
 			console.log("(detail) " + e)
 			return res.status(403).json({
 				message: "The server has a problem and can't find the user",
-				status: "error"
+				status: false
 			})
 		}
 	}
@@ -56,7 +56,7 @@ class UserControllers {
 			console.log("(edit) " + e)
 			return res.status(403).json({
 				message: "The server has a problem and can't find the user",
-				status: "error"
+				status: false
 			})
 		}
 	}
@@ -75,7 +75,7 @@ class UserControllers {
 			else {
 				return res.status(403).json({
 					message: "You do not have permission to perform this action !",
-					status: "error"
+					status: false
 				})
 			}
 		}
@@ -83,7 +83,7 @@ class UserControllers {
 			console.log("(update) " + e)
 			return res.status(403).json({
 				message: "Unable to change the data there was some problem !",
-				status: "error"
+				status: false
 			})
 		}
 	}
@@ -103,7 +103,7 @@ class UserControllers {
 			else {
 				return res.status(403).json({
 					message: "You do not have permission to perform this action !",
-					status: "error"
+					status: false
 				})
 			}
 		}
@@ -111,7 +111,7 @@ class UserControllers {
 			console.log("(delete) " + e)
 			return res.status(403).json({
 				message: "Can't delete data there was some problem !",
-				status: "error"
+				status: false
 			})
 		}
 	}

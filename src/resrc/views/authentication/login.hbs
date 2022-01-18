@@ -26,7 +26,7 @@
 const $ = document.querySelector.bind(document)
 $("#form").addEventListener("submit", async (e) => {
   e.preventDefault()
-  const signUp = await fetch("/login", {
+  const data = await fetch("/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -35,13 +35,13 @@ $("#form").addEventListener("submit", async (e) => {
       username: $("#username").value.trim(),
       password: $("#password").value.trim(),
     })
-  })
-  const data = signUp.json()
+  }).then(res => res.json())
   if(data.message) {
     $("#message").textContent = data.message || "Server Error !"
   }
-  if(data.status == "success") {
-    $("#form").submit()
+  if(data.status) {
+    window.location.href = data.redirect
   }
 })
 </script>
+

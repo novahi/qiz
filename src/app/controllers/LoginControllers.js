@@ -16,13 +16,13 @@ class LoginControllers {
       if (!userData) {
         return res.status(403).json({
           message: "Invalid username !",
-          status: "error"
+          status: false
         })
       }
       if (userData.password !== password) {
         return res.status(403).json({
           message: "Invalid password !",
-          status: "error"
+          status: false
         })
       }
       if (userData && userData.password == password) {
@@ -40,16 +40,16 @@ class LoginControllers {
         })
         res.status(200).json({
           message: "Logged in successfully !",
-          status: "success"
+          status: true,
+          redirect: "/"
         })
-        return res.redirect("/")
       }
     }
     catch (e) {
       console.log(e)
       res.status(404).json({
         message: "Invalid username or password !",
-        status: "error"
+        status: false
       })
     }
   }

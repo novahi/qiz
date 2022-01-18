@@ -56,7 +56,7 @@
   const $ = document.querySelector.bind(document)
 $("#form").addEventListener("submit", async (e) => {
   e.preventDefault()
-  const signUp = await fetch("/signup", {
+  const data = await fetch("/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -70,13 +70,12 @@ $("#form").addEventListener("submit", async (e) => {
       facebook: $("#facebook").value.trim(),
       mail: $("#email").value.trim()
     })
-  })
-  const data = signUp.json()
+  }).then(res => res.json())
   if(data.message) {
     $("#message").textContent = data.message || "Server Error !"
   }
-  if(data.status == "success") {
-    $("#form").submit()
+  if (data.status) {
+    window.location.href = data.redirect
   }
 })
 </script>
