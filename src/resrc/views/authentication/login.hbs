@@ -40,9 +40,9 @@ $("#form").addEventListener("submit", async (e) => {
     $("#message").textContent = data.message || "Server Error !"
   }
   if(data.status) {
-    $("#message").classList("success")
-    window.location.href = data.redirect
-  }1
+    $("#message").classList.add("success")
+    return window.location.href = data.redirect
+  }
 })
 </script>
 
