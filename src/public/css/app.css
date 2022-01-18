@@ -18,9 +18,19 @@
 .form .heading {
   font-size: 2rem;
 }
-.form .desc {
+.form .error {
   text-align: center;
-  color: #E93213;
+  color: #F00000;
+  font-size: 1.6rem;
+  font-weight: lighter;
+  line-height: 2.4rem;
+  margin-top: 16px;
+  font-weight: 300;
+}
+
+.form .success {
+  text-align: center;
+  color: #4AF000;
   font-size: 1.6rem;
   font-weight: lighter;
   line-height: 2.4rem;

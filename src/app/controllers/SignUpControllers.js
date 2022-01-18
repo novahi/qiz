@@ -21,7 +21,7 @@ class SignUpControllers {
         username: validateUsername
         ,id
       }).save()
-      res.status(200).json({
+      return res.status(200).json({
         message: "Sign Up Successfully! ",
         status: true,
         redirect: "/login"
