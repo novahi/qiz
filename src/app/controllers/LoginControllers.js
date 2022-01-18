@@ -14,13 +14,15 @@ class LoginControllers {
         username
       })
       if (!userData) {
-        return res.status(403).render('/authentication/login', {
-          message: "Invalid username !"
+        return res.status(403).json({
+          message: "Invalid username !",
+          status: "error"
         })
       }
       if (userData.password !== password) {
-        return res.status(403).render('authentication/login', {
-          message: "Invalid password !"
+        return res.status(403).json({
+          message: "Invalid password !",
+          status: "error"
         })
       }
       if (userData && userData.password == password) {
@@ -37,16 +39,17 @@ class LoginControllers {
           secure: false
         })
         res.status(200).json({
-          "message": "Logged in successfully !",
-          "status": true,
+          message: "Logged in successfully !",
+          status: "success"
         })
-        return res.status(200).redirect('/users')
+        return res.redirect("/")
       }
     }
     catch (e) {
       console.log(e)
-      res.status(404).render('authentication/signup', {
-        message: "Bad Request !"
+      res.status(404).json({
+        message: "Invalid username or password !",
+        status: "error"
       })
     }
   }

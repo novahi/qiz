@@ -14,7 +14,8 @@ class Middleware {
       const id = decode.id 
       if(!id) {
         return res.status(403).redirect('/')
-      } else {
+      } 
+      else {
         req.userId = id
         next()
       }
@@ -22,8 +23,8 @@ class Middleware {
     catch (e) {
       console.log(e)
       res.status(403).json({
-        "message": "You are not authorized to perform this action. Please try again later !",
-        "status": false
+        message: "You are not authorized to perform this action. Please try again later !",
+        status: "error"
       })
     }
   }
@@ -39,7 +40,8 @@ class Middleware {
     const token = req.cookies.accessToken
     if(token) {
       return res.status(401).redirect('back')
-    } else {
+    } 
+    else {
       next()
     }
   }

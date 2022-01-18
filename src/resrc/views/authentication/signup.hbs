@@ -1,5 +1,4 @@
-  <div class="main">
-    
+<div class="main">
   <form action="/signup" method="POST" class="form" id="form">
     <h3 class="heading">Đăng ký tài khoản</h3>
     <p class="desc" id="message">{{message}}</p>
@@ -53,3 +52,31 @@
   </form>
 </div>
 
+<script>
+  const $ = document.querySelector.bind(document)
+$("#form").addEventListener("submit", async (e) => {
+  e.preventDefault()
+  const signUp = await fetch("/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: $("#username").value.trim(),
+      password: $("#password").value.trim(),
+      name: $("#name").value.trim(),
+      age: $("#age").value.trim(),
+      address: $("#address").value.trim(),
+      facebook: $("#facebook").value.trim(),
+      mail: $("#email").value.trim()
+    })
+  })
+  const data = signUp.json()
+  if(data.message) {
+    $("#message").textContent = data.message || "Server Error !"
+  }
+  if(data.status == "success") {
+    $("#form").submit()
+  }
+})
+</script>
