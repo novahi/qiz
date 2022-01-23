@@ -47,7 +47,7 @@ class LoginControllers {
     }
     catch (e) {
       console.log(e)
-      res.status(404).json({
+      return res.status(404).json({
         message: "Invalid username or password !",
         status: false
       })

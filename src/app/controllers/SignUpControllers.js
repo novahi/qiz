@@ -10,16 +10,16 @@ class SignUpControllers {
     let id
     try {
       const formData = req.body
-      const { password,username, ...other} = formData
+      let { password,username, ...other} = formData
       const idFb = other.facebook
       other.image = `https://graph.facebook.com/${idFb.trim()}/picture?height=1000&width=1000&ftype=large&${process.env.ACCESSTOKEN_FB}`
-      const validateUsername = username.toLowerCase().trim()
+      username = username.toLowerCase().trim()
       const newUser = await User(other).save()
       id = newUser._id
       const newAccount = await new Account({
         password,
-        username: validateUsername
-        ,id
+        username,
+        id
       }).save()
       return res.status(200).json({
         message: "Sign Up Successfully! ",

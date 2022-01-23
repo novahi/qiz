@@ -22,7 +22,7 @@ class Middleware {
     }
     catch (e) {
       console.log(e)
-      res.status(403).json({
+      return res.status(403).json({
         message: "You are not authorized to perform this action. Please try again later !",
         status: false
       })
@@ -30,8 +30,9 @@ class Middleware {
   }
   validate(req, res, next) {
     const formData = req.body
-    let {password} = formData
-    let username = formData.username.toLowerCase()
+    let {password, username} = formData
+    username = username.toLowerCase().trim()
+    password = password.trim()
     req.username = username
     req.password = password
     next()
@@ -40,7 +41,7 @@ class Middleware {
     const token = req.cookies.accessToken
     if(token) {
       return res.status(401).redirect('back')
-    } 
+    }
     else {
       next()
     }
