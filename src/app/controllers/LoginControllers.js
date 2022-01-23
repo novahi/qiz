@@ -10,25 +10,25 @@ class LoginControllers {
     try {
       const password = req.password
       const username = req.username
-      const userData = await Account.findOne({
+      const accountData = await Account.findOne({
         username
       })
-      if (!userData) {
+      if (!accountData) {
         return res.status(403).json({
           message: "Invalid username !",
           status: false
         })
       }
-      if (userData.password !== password) {
+      if (accountData.password !== password) {
         return res.status(403).json({
           message: "Invalid password !",
           status: false
         })
       }
-      if (userData && userData.password == password) {
+      if (accountData && accountData.password == password) {
         const accessToken = jwt.sign({
-          id: userData.id,
-          role: userData.role
+          id: accountData.id,
+          role: accountData.role
         }, process.env.JWT_SECRET, {
           expiresIn: "30m"
         })
