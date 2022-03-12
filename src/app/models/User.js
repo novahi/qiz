@@ -9,15 +9,7 @@ const User = new Schema({
     min: 3,
     required: true
   },
-  age: {
-    type: Number,
-    required: true
-  },
-  address: {
-    type: String,
-    required: true
-  },
-  facebook: {
+  id: {
     type: Number,
     required: true
   },

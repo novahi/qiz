@@ -3,55 +3,11 @@ const Account = require('../models/Account')
 const jwt = require('jsonwebtoken')
 
 class LoginControllers {
-  async get(req, res) {
-    return res.status(200).render('authentication/login')
+  async get (req, res) {
+    res.status(200).render("authentication/login")
   }
-  async post(req, res) {
-    try {
-      const password = req.password
-      const username = req.username
-      const accountData = await Account.findOne({
-        username
-      })
-      if (!accountData) {
-        return res.status(403).json({
-          message: "Invalid username !",
-          status: false
-        })
-      }
-      if (accountData.password !== password) {
-        return res.status(403).json({
-          message: "Invalid password !",
-          status: false
-        })
-      }
-      if (accountData && accountData.password == password) {
-        const accessToken = jwt.sign({
-          id: accountData.id,
-          role: accountData.role
-        }, process.env.JWT_SECRET, {
-          expiresIn: "30m"
-        })
-        res.cookie("accessToken", accessToken, {
-          httpOnly: true,
-          path: "/",
-          //sameSite: "strict",
-          secure: false
-        })
-        return res.status(200).json({
-          message: "Logged in successfully !",
-          status: true,
-          redirect: "/"
-        })
-      }
-    }
-    catch (e) {
-      console.log(e)
-      return res.status(404).json({
-        message: "Invalid username or password !",
-        status: false
-      })
-    }
+  async post (req, res) {
+    
   }
 }
 

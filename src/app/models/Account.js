@@ -15,17 +15,16 @@ const Account = new Schema({
   },
   password: {
     type: String,
-    required: true,
-    min: 6
+    min: 6,
+    require: true,
   },
-  id: {
+  accessToken: {
     type: String,
-    unique: true,
     default: null
   },
-  role: {
-    type: Boolean,
-    default: false
+  id: {
+    type: Number,
+    default: null
   }
 }, {
   timestamps: {
